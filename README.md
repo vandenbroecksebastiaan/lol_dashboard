@@ -1,0 +1,1 @@
+This repo present a dashboard to monitor metrics in the popular game League of Legends. It does not require an API key, as all the data is requested from the local client.
