@@ -1,5 +1,6 @@
 import requests
 import pandas as pd
+import json
 
 champion_data = pd.DataFrame()
 
@@ -42,3 +43,10 @@ def get_event_data():
     event_data = all_game_data["events"]["Events"]
 
     return event_data
+
+
+def write_event_data():
+    event_data = get_event_data()
+    with open("data/event_data.txt", "w") as file:
+        file.write(json.dumps(event_data))
+        file.close()

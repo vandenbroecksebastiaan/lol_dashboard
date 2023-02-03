@@ -5,9 +5,9 @@ from data import get_game_data, get_event_data
 
 
 def stream_kills_callback(app):
+
     @app.callback(Output("graph_kills", "figure"),
                   [Input("interval_kills", "n_intervals")])
-
     def stream_kills(value):
         # Get the data
         event_data = get_event_data()
@@ -57,11 +57,6 @@ def stream_kills_callback(app):
         tickvals = list(range(max(champion_to_kills_map.values())))
         fig.update_yaxes(title="Number of kills", tickvals=tickvals)
         fig.update_xaxes(title="")
-    
-        # TODO: add labels for roles
-        # TODO: add a color group for each team
-        # TODO: move all the dicts that have to be computed only once outside the
-        # function
     
         return fig
 

@@ -14,12 +14,12 @@ from callbacks.stream_AP_callback import stream_AP_callback
 from callbacks.stream_current_health_callback import stream_current_health_callback
 from callbacks.stream_max_health_callback import stream_max_health_callback
 from callbacks.stream_cum_kills_callback import stream_cum_kills_callback
-
-
-API_KEY = "RGAPI-eda520f0-c6d8-42f9-a07e-356a3141da1"
+from callbacks.stream_kills_per_min_callback import stream_kills_per_min_callback
+from callbacks.stream_event_log_callback import stream_event_log_callback
 
 
 # TODO: add charts for total and current gold
+# TODO: add a button for writing event data
 
 
 champion_variables = [
@@ -55,5 +55,7 @@ app = stream_kills_callback(app)
 app = stream_current_health_callback(app)
 app = stream_max_health_callback(app)
 app = stream_cum_kills_callback(app)
+app = stream_kills_per_min_callback(app)
+app = stream_event_log_callback(app)
 
 app.run_server(debug=True, threaded=True)

@@ -78,7 +78,9 @@ layout = html.Div(children=[
         ),
         dbc.Col(
             html.Div(
-                [html.H3("Kills per minute", className="subtitle")
+                [html.H3("Kills per minute", className="subtitle"),
+                 dcc.Interval(id="interval_kills_per_min", interval=1000, n_intervals=0),
+                 dcc.Graph(id="graph_kills_per_min")
                 ], className="col-chart"
             )
         )
@@ -120,24 +122,38 @@ layout = html.Div(children=[
         )
     ]),
 
-    dbc.Row(html.H1("Game statistics"), className="title"),
+    dbc.Row(
+        dbc.Col(
+            html.Div(html.H1("Game statistics"), className="title"),
+            style={"padding-top": "20px"}
+        )
+    ),
+
     dbc.Row([
         dbc.Col(
             html.Div(
                 [html.H3("Kill log", className="subtitle"),
                  dcc.Interval(id="interval_kills", interval=1000, n_intervals=0),
                  dcc.Graph(id="graph_kills")
-                 ]
+                 ], className="col-chart"
             )
         ),
         dbc.Col(
             html.Div(
-                [html.P("TEMP")]
-            )
+                [html.H3("Event log", className="subtitle"),
+                 html.P(id="event_log"),
+                 dcc.Interval(id="interval_event_log", interval=1000, n_intervals=0)],
+            ), className="col-chart"
         )
     ]),
 
-    dbc.Row(html.H1("Team statistics"), className="title"),
+    dbc.Row(
+        dbc.Col(
+            html.Div(html.H1("Team statistics"), className="title"),
+            style={"padding-top": "20px"}
+        )
+    ),
+
     dbc.Row([
         dbc.Col(
             html.Div(

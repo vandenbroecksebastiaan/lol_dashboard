@@ -1,14 +1,15 @@
 from dash.dependencies import Input, Output
-import numpy as np
 import plotly.graph_objects as go
-from data import get_champion_data, get_event_data, get_game_data
+import numpy as np
+
+from data import get_game_data, get_event_data, get_champion_data
 
 
-def stream_cum_kills_callback(app):
+def stream_kills_per_min_callback(app):
 
-    @app.callback(Output("graph_cum_kills", "figure"),
-                  [Input("interval_cum_kills", "n_intervals")])
-    def stream_cum_kills(value):
+    @app.callback(Output("graph_kills_per_min", "figure"),
+                  [Input("interval_kills_per_min", "n_intervals")])
+    def stream_kills_per_min(value):
         event_data = get_event_data()
         game_data = get_game_data()
         champion_data = get_champion_data()
@@ -38,7 +39,7 @@ def stream_cum_kills_callback(app):
 
         # Make the visualization
         fig = go.Figure(data=[go.Scatter(x=champion_data.index,
-                                         y=champion_data["cum_kills"],
+                                         y=champion_data["cum_kills"] / (time*60),
                                          fill="tozeroy")])
         fig.update_layout(margin=dict(l=10, r=10, t=0, b=0),
                           xaxis={"showticklabels": False},
